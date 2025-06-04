@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Validar - Medi</title>
+  <link rel="stylesheet" href="styles/login.css">
+</head>
+<body>
+<div class="container">
+  <img src="assets/logo.png" alt="Logo Medi" class="logo">
+  <h1 class="titulo">Validar</h1>
+
+  <div class="formulario">
+    <h2>Buscar miembro</h2>
+    <input type="text" id="nombreBusqueda" placeholder="Nombre del miembro" />
+    <button onclick="buscarMiembro()">Buscar Miembro</button>
+    <div id="resultadoMiembro" class="resultado"></div>
+  </div>
+
+  <div class="formulario">
+    <h2>Buscar producto</h2>
+    <input type="text" id="codigoBusqueda" placeholder="Código del producto" />
+    <button onclick="buscarProducto()">Buscar Producto</button>
+    <div id="resultadoProducto" class="resultado"></div>
+  </div>
+
+  <!-- NUEVO BLOQUE: Verificar miembro por rostro -->
+  <div class="formulario">
+    <h2>Verificar miembro por rostro</h2>
+    <button onclick="verificarRostro()">Verificar rostro</button>
+    <video id="video" autoplay playsinline style="display:none;" width="320" height="240"></video>
+  </div>
+
+  <button onclick="window.location.href='index.html'">Volver al inicio</button>
+
+  <footer>
+  </footer>
+</div>
+
+<script src="scripts/buscar.js"></script>
+<script>
+    const video = document.getElementById("video");
+    let streamActivo = null;
+
+    function encenderCamara() {
+      if (!streamActivo) {
+        navigator.mediaDevices.getUserMedia({ video: true })
+          .then(stream => {
+            video.srcObject = stream;
+            streamActivo = stream;
+            video.style.display = "block";
+          });
+      }
+    }
+
+    function verificarRostro() {
+      encenderCamara();
+
+      setTimeout(() => {
+        const canvas = document.createElement("canvas");
+        canvas.width = video.videoWidth;
+        canvas.height = video.videoHeight;
+        const ctx = canvas.getContext("2d");
+        ctx.drawImage(video, 0, 0);
+
+        const imagen = canvas.toDataURL("image/jpeg");
+
+        fetch("http://127.0.0.1:5000/verificar_miembro", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ imagen })
+        })
+          .then(res => res.json())
+          .then(data => {
+            if (data.existe) {
+              alert(`Miembro reconocido: ${data.nombre}`);
+            } else {
+              alert("No se encontró coincidencia");
+            }
+            apagarCamara();
+          })
+          .catch(err => {
+            alert("Error de red: " + err);
+            apagarCamara();
+          });
+      }, 3000);
+    }
+
+    function apagarCamara() {
+      if (streamActivo) {
+        streamActivo.getTracks().forEach(track => track.stop());
+        streamActivo = null;
+        video.style.display = "none";
+      }
+    }
+  </script>
+</body>
+</html>

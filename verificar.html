@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <title>Verificar Miembro</title>
+    <style>
+    body {
+      background: #003366;
+      color: white;
+      font-family: sans-serif;
+      text-align: center;
+      padding: 20px;
+    }
+    video, canvas {
+      border-radius: 10px;
+      margin-top: 10px;
+    }
+    button {
+      padding: 10px 20px;
+      margin: 10px;
+      font-size: 16px;
+      background: #00c2cb;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+    #resultado {
+      margin-top: 20px;
+      font-size: 20px;
+      color: #00ffcc;
+    }
+  </style>
+</head>
+<body>
+<h1>Verificación Facial</h1>
+
+<video id="video" width="320" height="240" autoplay></video>
+<br />
+<button onclick="capturar()">Verificar rostro</button>
+<div id="resultado"></div>
+
+<script>
+    const video = document.getElementById('video');
+    navigator.mediaDevices.getUserMedia({ video: true })
+      .then(stream => { video.srcObject = stream; });
+
+    function capturar() {
+      const canvas = document.createElement('canvas');
+      canvas.width = video.videoWidth;
+      canvas.height = video.videoHeight;
+      canvas.getContext('2d').drawImage(video, 0, 0);
+      const imagen = canvas.toDataURL('image/jpeg');
+
+      fetch('http://127.0.0.1:5000/verificar_miembro', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ imagen })
+      })
+      .then(res => res.json())
+      .then(data => {
+        if (data.existe) {
+          document.getElementById('resultado').innerText = 'Miembro reconocido: ' + data.nombre;
+        } else {
+          document.getElementById('resultado').innerText = 'No se encontró coincidencia';
+        }
+      })
+      .catch(err => {
+        console.error(err);
+        document.getElementById('resultado').innerText = 'Error de red';
+      });
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Registro - Medi</title>
+  <link rel="stylesheet" href="styles/main.css">
+  <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.js"></script>
+</head>
+<body>
+<div class="container">
+  <img src="assets/logo.png" alt="Logo Medi" class="logo">
+  <h1 class="titulo">Registro</h1>
+
+  <!-- Registro de Miembro -->
+  <div id="form-miembro">
+    <h2>Registrar Miembro</h2>
+    <input type="text" id="nombreMiembro" placeholder="Nombre del miembro" />
+    <button onclick="iniciarCamara(); setTimeout(capturarYEnviarMiembro, 1000);">Capturar rostro</button>
+  </div>
+
+  <!-- Registro de Producto -->
+  <div id="form-producto">
+    <h2>Registrar Producto</h2>
+    <input type="text" id="codigoProducto" placeholder="Nombre del producto" />
+    <button onclick="iniciarCamara(); iniciarLectorQR();">Escanear código</button>
+  </div>
+
+  <!-- Contenedor de cámara -->
+  <div id="videoContainer" style="display: none;">
+    <video id="video" autoplay></video>
+    <canvas id="canvas" style="display: none;"></canvas>
+    <br>
+    <button onclick="cerrarCamara()">Cerrar cámara</button>
+  </div>
+
+  <!-- Volver -->
+  <button onclick="window.location.href='index.html'">Volver al inicio</button>
+</div>
+
+<script src="scripts/app.js"></script>
+</body>
+</html>
