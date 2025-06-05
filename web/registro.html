@@ -7,36 +7,53 @@
   <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.js"></script>
 </head>
 <body>
-<div class="container">
-  <img src="assets/logo.png" alt="Logo Medi" class="logo">
-  <h1 class="titulo">Registro</h1>
+  <div class="container">
 
-  <!-- Registro de Miembro -->
-  <div id="form-miembro">
-    <h2>Registrar Miembro</h2>
-    <input type="text" id="nombreMiembro" placeholder="Nombre del miembro" />
-    <button onclick="iniciarCamara(); setTimeout(capturarYEnviarMiembro, 1000);">Capturar rostro</button>
+    <!-- Logo principal -->
+    <img src="assets/logo.png" alt="Logo Medi" class="logo">
+    <h1 class="titulo">Registro</h1>
+
+    <!-- Registro de Miembro -->
+    <div id="form-miembro" class="menu">
+      <h2>Registrar Miembro</h2>
+      <input type="text" id="nombreMiembro" placeholder="Nombre del miembro" />
+
+      <button onclick="iniciarCamara(); setTimeout(capturarYEnviarMiembro, 1000);">
+        <img src="assets/capturar.svg" alt="Icono Capturar" class="icono-boton">
+        <span>Capturar rostro</span>
+      </button>
+    </div>
+
+    <!-- Registro de Producto -->
+    <div id="form-producto" class="menu">
+      <h2>Registrar Producto</h2>
+      <input type="text" id="codigoProducto" placeholder="Nombre del producto" />
+
+      <button onclick="iniciarCamara(); iniciarLectorQR();">
+        <img src="assets/escanear.svg" alt="Icono Escanear" class="icono-boton">
+        <span>Escanear código</span>
+      </button>
+    </div>
+
+    <!-- Contenedor de cámara -->
+    <div id="videoContainer">
+      <video id="video" autoplay></video>
+      <canvas id="canvas"></canvas>
+
+      <button onclick="cerrarCamara()">
+        <span>Cerrar cámara</span>
+      </button>
+    </div>
+
+    <!-- Botón volver al inicio -->
+    <div class="menu">
+      <button onclick="window.location.href='index.html'">
+        <span>Volver al inicio</span>
+      </button>
+    </div>
+
   </div>
 
-  <!-- Registro de Producto -->
-  <div id="form-producto">
-    <h2>Registrar Producto</h2>
-    <input type="text" id="codigoProducto" placeholder="Nombre del producto" />
-    <button onclick="iniciarCamara(); iniciarLectorQR();">Escanear código</button>
-  </div>
-
-  <!-- Contenedor de cámara -->
-  <div id="videoContainer" style="display: none;">
-    <video id="video" autoplay></video>
-    <canvas id="canvas" style="display: none;"></canvas>
-    <br>
-    <button onclick="cerrarCamara()">Cerrar cámara</button>
-  </div>
-
-  <!-- Volver -->
-  <button onclick="window.location.href='index.html'">Volver al inicio</button>
-</div>
-
-<script src="scripts/app.js"></script>
+  <script src="scripts/app.js"></script>
 </body>
 </html>
