@@ -6,52 +6,66 @@
   <link rel="stylesheet" href="styles/login.css">
 </head>
 <body>
-<div class="container">
-  <img src="assets/logo.png" alt="Logo Medi" class="logo">
-  <h1 class="titulo">Validar</h1>
+  <div class="container">
+    <img src="assets/logo.png" alt="Logo Medi" class="logo">
+    <h1 class="titulo">Validar</h1>
 
-  <!--Buscar boton uwu-->>
+    <!-- Buscar miembro -->
+    <div class="formulario">
+      <h2>Buscar Miembro</h2>
+      <input type="text" id="nombreBusqueda" placeholder="Nombre del miembro" />
 
-  <div class="formulario">
-    <h2>Buscar miembro</h2>
-    <input type="text" id="nombreBusqueda" placeholder="Nombre del miembro" />
-
-    
-
-    <button onclick="buscarCamara(); setTimeout(buscarMiembro, 1000);">
+      <button onclick="buscarCamara(); setTimeout(buscarMiembro, 100);">
         <img src="assets/buscarMiembro.svg" alt="Icono buscarMiembro" class="icono-boton">
         <span>Buscar Miembro</span>
       </button>
 
+      <div id="resultadoMiembro" class="resultado"></div>
+    </div>
+
+    <!-- Buscar producto -->
+    <div class="formulario">
+      <h2>Buscar Producto</h2>
+      <input type="text" id="codigoBusqueda" placeholder="Código del producto" />
+
+      <button onclick="buscarProducto(); setTimeout(buscarProducto, 100);">
+        <img src="assets/buscarProducto.svg" alt="Icono buscarProducto" class="icono-boton">
+        <span>Buscar Producto</span>
+      </button>
 
 
-    <div id="resultadoMiembro" class="resultado"></div>
+      
+
+      <div id="resultadoProducto" class="resultado"></div>
+    </div>
+
+    <!-- Verificar rostro -->
+    <div class="formulario">
+      <h2>Verificar miembro por rostro</h2>
+
+      <button onclick="verificarRostro(); setTimeout(verificarRostro, 100);">
+        <img src="assets/verificarRostro.svg" alt="Icono verificarRostro" class="icono-boton">
+        <span>verificar Rostro</span>
+      </button>
+
+
+    
+
+      <video id="video" autoplay playsinline style="display:none;" width="320" height="240"></video>
+    </div>
+
+    <!-- Volver -->
+    <div class="formulario">
+      <button onclick="window.location.href='index.html'">
+        <span>Volver al inicio</span>
+      </button>
+    </div>
+
+    <footer></footer>
   </div>
 
-
-
-  <div class="formulario">
-    <h2>Buscar producto</h2>
-    <input type="text" id="codigoBusqueda" placeholder="Código del producto" />
-    <button onclick="buscarProducto()">Buscar Producto</button>
-    <div id="resultadoProducto" class="resultado"></div>
-  </div>
-
-  <!-- NUEVO BLOQUE: Verificar miembro por rostro -->
-  <div class="formulario">
-    <h2>Verificar miembro por rostro</h2>
-    <button onclick="verificarRostro()">Verificar rostro</button>
-    <video id="video" autoplay playsinline style="display:none;" width="320" height="240"></video>
-  </div>
-
-  <button onclick="window.location.href='index.html'">Volver al inicio</button>
-
-  <footer>
-  </footer>
-</div>
-
-<script src="scripts/buscar.js"></script>
-<script>
+  <script src="scripts/buscar.js"></script>
+  <script>
     const video = document.getElementById("video");
     let streamActivo = null;
 
@@ -83,19 +97,19 @@
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ imagen })
         })
-          .then(res => res.json())
-          .then(data => {
-            if (data.existe) {
-              alert(`Miembro reconocido: ${data.nombre}`);
-            } else {
-              alert("No se encontró coincidencia");
-            }
-            apagarCamara();
-          })
-          .catch(err => {
-            alert("Error de red: " + err);
-            apagarCamara();
-          });
+        .then(res => res.json())
+        .then(data => {
+          if (data.existe) {
+            alert(`Miembro reconocido: ${data.nombre}`);
+          } else {
+            alert("No se encontró coincidencia");
+          }
+          apagarCamara();
+        })
+        .catch(err => {
+          alert("Error de red: " + err);
+          apagarCamara();
+        });
       }, 3000);
     }
 
