@@ -5,7 +5,7 @@ body {
   font-family: 'Segoe UI', Tahoma, sans-serif;
   background: url("https://cdn.mos.cms.futurecdn.net/v2/t:200,l:0,cw:6400,ch:3600,q:80,w:6400/s4sJAJ3AdioUDfEpJ4cAs4.jpg") no-repeat center center fixed;
   background-size: cover;
-  color: #e0f7fa;
+  color: #000000;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -15,7 +15,7 @@ body {
 /* === Contenedor principal === */
 .container {
   text-align: center;
-  background-color: rgba(0, 51, 102, 0.85);
+  background-color: #BAD4E5;
   padding: 40px;
   border-radius: 16px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
@@ -37,7 +37,7 @@ body {
 .titulo {
   font-size: 26px;
   margin: 10px 0;
-  color: #00c2cb;
+  color: #0c7dff;
 }
 
 /* === Sección de formulario === */
