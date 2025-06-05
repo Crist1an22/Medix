@@ -1,31 +1,56 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <link rel="stylesheet" href="styles/main.css">
-  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Inicio</title>
+
+  <!-- Estilo principal con el gato incluido -->
+  <link rel="stylesheet" href="styles/main.css" />
+
+  <!-- Fuente -->
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap" rel="stylesheet" />
 </head>
 <body>
+  <!-- Gato animado en el fondo -->
+  <div class="gato-background">
+    <div class="container-gato">
+      <div class="face">
+        <div class="ear-l"></div>
+        <div class="ear-r"></div>
+        <div class="eye-l"></div>
+        <div class="eye-r"></div>
+        <div class="nose"></div>
+        <div class="mouth"></div>
+      </div>
+      <div class="hand-l"></div>
+      <div class="hand-r"></div>
+      <div class="leg-l"></div>
+      <div class="leg-r"></div>
+      <div class="music-note"></div>
+    </div>
+  </div>
+
+  <!-- Contenido principal -->
   <div class="container">
-    <img src="assets/logo.png" alt="Logo Medi" class="logo">
+    <img src="assets/logo.png" alt="Logo Medi" class="logo" />
 
     <div class="menu">
       <button onclick="window.location.href='registro.html'">
-        <img src="assets/registrar.svg" alt="Registrar" class="icono-boton">
+        <img src="assets/registrar.svg" alt="Registrar" class="icono-boton" />
         <span>Registrar</span>
       </button>
 
-
       <button onclick="window.location.href='buscar.html'">
-        <img src="assets/buscar.svg" alt="Buscar" class="icono-boton">
+        <img src="assets/buscar.svg" alt="Buscar" class="icono-boton" />
         <span>Buscar</span>
       </button>
     </div>
 
     <footer>
+      © eve, cris, jas
     </footer>
   </div>
 </body>
 </html>
+
