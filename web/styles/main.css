@@ -1,10 +1,10 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Segoe UI', Tahoma, sans-serif;
+  font-family: 'Quicksand', sans-serif;
   background: url("https://cdn.mos.cms.futurecdn.net/v2/t:200,l:0,cw:6400,ch:3600,q:80,w:6400/s4sJAJ3AdioUDfEpJ4cAs4.jpg") no-repeat center center fixed;
   background-size: cover;
-  color: #e0f7fa;
+  color: #f6f6f6;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -22,13 +22,13 @@ body {
 }
 
 .logo {
-  width: 160px;
+  width: 300px;
   height: auto;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
 }
 
 .titulo {
-  font-size: 26px;
+  font-size: 50px;
   margin: 10px 0;
   color: #00c2cb;
 }
@@ -46,17 +46,34 @@ button {
   width: 80%;
   padding: 12px;
   margin: 8px 0;
-  font-size: 16px;
-  background-color: #00c2cb;
-  color: #003366;
+  font-size: 30px;
+  background: linear-gradient(150deg, #e2cbf1, rgb(195, 203, 249), #cadfe2);
+  color: #000000;
   border: none;
   border-radius: 10px;
   cursor: pointer;
-  transition: background 0.3s ease;
+  transition: transform 0.3s ease, background 0.3s ease;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
 }
 
 button:hover {
-  background-color: #00acc1;
+  background: linear-gradient(150deg, #7200cc, #78d, #00bde0);
+  transform: scale(1.03);
+}
+
+.icono-boton {
+  width: 70px;
+  height: 70px;
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .resultado {
@@ -76,7 +93,7 @@ footer {
   color: #b0bec5;
 }
 
-/* ✅ Estilo para centrar la cámara en registro */
+/* Estilo para centrar la cámara en registro */
 #videoContainer {
   display: flex;
   justify-content: center;
