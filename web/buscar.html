@@ -10,12 +10,25 @@
   <img src="assets/logo.png" alt="Logo Medi" class="logo">
   <h1 class="titulo">Validar</h1>
 
+  <!--Buscar boton uwu-->>
+
   <div class="formulario">
     <h2>Buscar miembro</h2>
     <input type="text" id="nombreBusqueda" placeholder="Nombre del miembro" />
-    <button onclick="buscarMiembro()">Buscar Miembro</button>
+
+    
+
+    <button onclick="buscarCamara(); setTimeout(buscarMiembro, 1000);">
+        <img src="assets/buscarMiembro.svg" alt="Icono buscarMiembro" class="icono-boton">
+        <span>Buscar Miembro</span>
+      </button>
+
+
+
     <div id="resultadoMiembro" class="resultado"></div>
   </div>
+
+
 
   <div class="formulario">
     <h2>Buscar producto</h2>
